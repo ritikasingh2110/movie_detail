@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+body {
+    /* background: rgb(31,82,124); */
+    background: rgb(31,82,124);
+background: linear-gradient(167deg, rgba(31,82,124,1) 0%, rgba(8,15,23,1) 100%);
+
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 0;
+    min-height: 100vh;
+
+    margin: 0;
+}
+/* h1 {
+    text-align: center;
+    margin-top: 20px;
+} */
+.container {
+    max-width: 700px;
+    margin: auto;
+}
+a{
+    color: white;
+}
+
+a:hover{
+    color: rgb(176, 176, 233);
+}
+.movie-card {
+    margin-top: 20px;
+    padding: 15px;
+    /* background-color: #1e1e1e; */
+    border-radius: 10px;
+    /* height: 1vh; */
+    /* width: 500px; */
+}
+
+.recommended {
+    color: gold;
+    font-weight: bold;
+}
+.remo{
+    height: 30px;
+    width: 70px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    font-size: 10px;
+}
+.remo:hover{
+    background-color: rgb(223, 85, 85);
+    font-size: 12px;
+    border: 1px solid black;
+}
+    </style>
+</head>
+<body>
+    <h1>Watch List 🎬</h1>
+    <a href="index.html">Back to Search!!!</a>
+        <div id="container">
+            
+        </div>
+</body>
+</html>
+<script>
+    const apiKey = "6d88214b";
+    let cart = JSON.parse(localStorage.getItem("watch")) || [];
+    
+    const container = document.getElementById("container");
+    
+    if (cart.length === 0) {
+        container.innerText = "No movies added to Watch List!!!";
+    } else {
+        display(cart);
+    }
+    
+    function display(arr) {
+        container.innerHTML = "";  // clear previous content
+    
+        arr.forEach((movieName, index) => {
+            fetch(`https://www.omdbapi.com/?t=${movieName}&apikey=${apiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.Response === "False") return;
+    
+                    let card = document.createElement("div");
+                    card.classList.add("movie-card");
+    
+                    let img = document.createElement("img");
+                    img.setAttribute("src", data.Poster);
+    
+                    let title = document.createElement("h2");
+                    title.innerText = data.Title;
+    
+                    let rel = document.createElement("p");
+                    rel.innerText = `Released: ${data.Released}`;
+    
+                    let rate = document.createElement("p");
+                    rate.innerText = `IMDb Rating: ${data.imdbRating}`;
+    
+                    let gen = document.createElement("p");
+                    gen.innerText = `Genre: ${data.Genre}`;
+    
+                    let removeBtn = document.createElement("button");
+                    removeBtn.innerText = "Remove";
+                    removeBtn.className="remo"
+                    removeBtn.addEventListener("click", function () {
+                        cart.splice(index, 1);
+                        localStorage.setItem("watch", JSON.stringify(cart));
+                        display(cart);
+                    });
+    
+                    card.append(img, title, rel, rate, gen, removeBtn);
+                    container.appendChild(card);
+                });
+        });
+    }
+    </script>

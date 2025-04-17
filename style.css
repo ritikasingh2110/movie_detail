@@ -1,0 +1,79 @@
+
+body {
+    /* background: rgb(31,82,124); */
+    background: rgb(31,82,124);
+background: linear-gradient(167deg, rgba(31,82,124,1) 0%, rgba(8,15,23,1) 100%);
+
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh;
+
+    /* margin: 0; */
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+}
+a{
+    color: white;
+}
+.search-box input {
+    padding: 10px;
+    width: 70%;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+.search-box button {
+    background-color: aliceblue;
+    padding: 10px; 
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid grey;
+    margin-right: 15px;
+}
+.search-box button:hover{
+    background-color: rgb(226, 185, 81);
+    font-size: 12px;
+}
+i{
+    padding-right: 4px;
+}
+a:hover{
+    color: rgb(176, 176, 233);
+}
+.movie-card {
+    margin-top: 20px;
+    padding: 15px;
+    /* background-color: #1e1e1e; */
+    border-radius: 10px;
+    height: 1vh;
+
+}
+
+.recom {
+    color: gold;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.ad{
+    height: 30px;
+    width: 90px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    font-size: 10px;
+}
+.ad:hover{
+    border: 1px solid black;
+    background-color: rgb(133, 174, 133);
+    font-size: 11px;
+
+}
+
+
+
+
